@@ -10,8 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       WASP_VERSION: "0.21"
-      RAILWAY_PROJECT_NAME: my-project-name
-      RAILWAY_PROJECT_ID: MY_PROJECT_ID
+      RAILWAY_PROJECT_NAME: flight-club-mage
+      RAILWAY_PROJECT_ID: ed2c40a5-1001-4a6f-8022-dab62b7ec9df
 
     steps:
       - uses: actions/checkout@v6
@@ -29,7 +29,7 @@ jobs:
         run: npm install -g @railway/cli
 
       - name: Deploy
-        run: wasp deploy railway deploy flight-club-mage --existing-project-id ed2c40a5-1001-4a6f-8022-dab62b7ec9df
+        run: wasp deploy railway deploy $RAILWAY_PROJECT_NAME --existing-project-id $RAILWAY_PROJECT_ID
         env:
           # You must add RAILWAY_API_TOKEN to your Repository Secrets
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
