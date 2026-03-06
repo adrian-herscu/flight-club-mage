@@ -52,11 +52,6 @@ jobs:
       - name: Install Railway CLI
         run: npm i -g @railway/cli
 
-      - name: Verify Railway auth
-        run: railway whoami
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
       - name: Deploy preview via Wasp
         run: wasp deploy railway deploy flight-club-mage-preview --existing-project-id ${{ secrets.RAILWAY_PREVIEW_PROJECT_ID }}
         env:
