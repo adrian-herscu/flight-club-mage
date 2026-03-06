@@ -1,0 +1,60 @@
+datasource db {
+  provider = "sqlite"
+  // Wasp requires that the url is set to the DATABASE_URL environment variable.
+  url      = env("DATABASE_URL")
+}
+
+// Wasp requires the `prisma-client-js` generator to be present.
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+    id             Int             @id @default(autoincrement())
+    enrollments    Enrollment[]
+    role           String
+    managedSchools ManagedSchool[]
+}
+
+model School {
+    id       Int             @id @default(autoincrement())
+    name     String
+    courses  Course[]
+    managers ManagedSchool[]
+}
+
+model Course {
+    id         Int          @id @default(autoincrement())
+    name       String
+    syllabus   Syllabus     @relation(fields: [syllabusId], references: [id])
+    students   Enrollment[]
+    school     School       @relation(fields: [schoolId], references: [id])
+    schoolId   Int
+    syllabusId Int
+}
+
+model Syllabus {
+    id          Int      @id @default(autoincrement())
+    version     Int
+    content     String
+    isFinalized Boolean  @default(false)
+    courses     Course[]
+}
+
+model Enrollment {
+    id       Int    @id @default(autoincrement())
+    user     User   @relation(fields: [userId], references: [id])
+    userId   Int
+    course   Course @relation(fields: [courseId], references: [id])
+    courseId Int
+    progress String
+}
+
+model ManagedSchool {
+    user     User   @relation(fields: [userId], references: [id])
+    userId   Int
+    school   School @relation(fields: [schoolId], references: [id])
+    schoolId Int
+  
+    @@id([userId, schoolId])
+}
