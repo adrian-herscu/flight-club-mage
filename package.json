@@ -1,5 +1,5 @@
 {
-  "name": "flight-club-mage",
+  "name": "flightClubMage",
   "type": "module",
   "workspaces": [
     ".wasp/out/*",
