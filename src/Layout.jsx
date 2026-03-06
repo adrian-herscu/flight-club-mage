@@ -6,23 +6,9 @@ import "./Main.css";
 export const Layout = () => {
   const { data: user } = useAuth();
 
-  const googleIdentity = user?.identities?.google;
-  const usernameIdentity = user?.identities?.username;
+  const displayName = user?.username || 'Student';
 
-  const displayName =
-    usernameIdentity?.id ||
-    googleIdentity?.name ||
-    googleIdentity?.displayName ||
-    googleIdentity?.email ||
-    user?.email ||
-    'there';
-
-  const profileImageUrl =
-    googleIdentity?.picture ||
-    googleIdentity?.avatarUrl ||
-    googleIdentity?.photoUrl ||
-    googleIdentity?.profileImageUrl ||
-    null;
+  const firstLetter = displayName.charAt(0).toUpperCase();
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -33,18 +19,9 @@ export const Layout = () => {
           </Link>
           { user ? (
             <div className="flex items-center gap-3">
-              {profileImageUrl ? (
-                <img
-                  src={profileImageUrl}
-                  alt={`${displayName} profile`}
-                  className="w-8 h-8 rounded-full border border-white/30"
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <div className="w-8 h-8 rounded-full bg-primary-600 border border-white/30 flex items-center justify-center text-sm font-semibold">
-                  {displayName.charAt(0).toUpperCase()}
-                </div>
-              )}
+              <div className="w-8 h-8 rounded-full bg-primary-600 border border-white/30 flex items-center justify-center text-sm font-semibold">
+                {firstLetter}
+              </div>
               <span>
                 Hi, {displayName}!{' '}
                 <button onClick={logout} className="text-xl2 underline">

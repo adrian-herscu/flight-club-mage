@@ -11,6 +11,7 @@ generator client {
 
 model User {
     id             Int             @id @default(autoincrement())
+    profilePic     String?
     enrollments    Enrollment[]
     role           String          @default("student")
     managedSchools ManagedSchool[]

@@ -13,7 +13,10 @@ app flightClubMage {
     userEntity: User,
     methods: {
       usernameAndPassword: {},
-      google: {}
+      google: {
+        configFn: import { configFn } from "@src/auth.js",
+        userSignupFields: import { userSignupFields } from "@src/auth.js"
+      }
     },
     onAuthFailedRedirectTo: "/login",
     onAuthSucceededRedirectTo: "/"
