@@ -21,7 +21,7 @@ jobs:
           node-version: "22.12"
 
       - name: Install Wasp CLI
-        run: npm i -g @wasp.sh/wasp-cli@$WASP_VERSION
+        run: npm i -g @wasp.sh/wasp-cli@latest
 
       - name: Install Railway CLI
         run: npm i -g @railway/cli
