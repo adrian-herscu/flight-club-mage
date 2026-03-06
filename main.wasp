@@ -12,7 +12,8 @@ app flightClubMage {
   auth: {
     userEntity: User,
     methods: {
-      usernameAndPassword: {}
+      usernameAndPassword: {},
+      google: {}
     },
     onAuthFailedRedirectTo: "/login",
     onAuthSucceededRedirectTo: "/"
