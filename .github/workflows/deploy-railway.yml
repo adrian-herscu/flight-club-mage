@@ -28,8 +28,7 @@ jobs:
 
       - name: Deploy via Wasp
         run: |
-            export RAILWAY_NON_INTERACTIVE=true 
             wasp deploy railway deploy flight-club-mage --existing-project-id ed2c40a5-1001-4a6f-8022-dab62b7ec9df
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
