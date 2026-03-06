@@ -6,6 +6,24 @@ import "./Main.css";
 export const Layout = () => {
   const { data: user } = useAuth();
 
+  const googleIdentity = user?.identities?.google;
+  const usernameIdentity = user?.identities?.username;
+
+  const displayName =
+    usernameIdentity?.id ||
+    googleIdentity?.name ||
+    googleIdentity?.displayName ||
+    googleIdentity?.email ||
+    user?.email ||
+    'there';
+
+  const profileImageUrl =
+    googleIdentity?.picture ||
+    googleIdentity?.avatarUrl ||
+    googleIdentity?.photoUrl ||
+    googleIdentity?.profileImageUrl ||
+    null;
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="bg-primary-800 text-white p-4">
@@ -14,12 +32,26 @@ export const Layout = () => {
             <h1 className="text-xl2 font-semibold">flightClubMage</h1>
           </Link>
           { user ? (
-            <span>
-              Hi, {user.identities.username?.id}!{' '}
-              <button onClick={logout} className="text-xl2 underline">
-                (Log out)
-              </button>
-            </span>
+            <div className="flex items-center gap-3">
+              {profileImageUrl ? (
+                <img
+                  src={profileImageUrl}
+                  alt={`${displayName} profile`}
+                  className="w-8 h-8 rounded-full border border-white/30"
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <div className="w-8 h-8 rounded-full bg-primary-600 border border-white/30 flex items-center justify-center text-sm font-semibold">
+                  {displayName.charAt(0).toUpperCase()}
+                </div>
+              )}
+              <span>
+                Hi, {displayName}!{' '}
+                <button onClick={logout} className="text-xl2 underline">
+                  (Log out)
+                </button>
+              </span>
+            </div>
           ) : (
             <Link to="/login">
               <h1 className="text-xl2 underline">Log in</h1>
