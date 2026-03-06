@@ -12,7 +12,7 @@ generator client {
 model User {
     id             Int             @id @default(autoincrement())
     enrollments    Enrollment[]
-    role           String
+    role           String          @default("student")
     managedSchools ManagedSchool[]
 }
 
