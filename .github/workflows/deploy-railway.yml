@@ -28,8 +28,6 @@ jobs:
 
       - name: Deploy via Wasp
         run: |
-          # We only run the deploy command.
-          # The CLI detects RAILWAY_TOKEN and skips interactive login automatically.
-          wasp deploy railway deploy flight-club-mage --existing-project-id ed2c40a5-1001-4a6f-8022-dab62b7ec9df
+          wasp deploy railway deploy flight-club-mage --workspace 4abff7f5-e89f-4ca2-875e-bdb426ed3919 --existing-project-id ed2c40a5-1001-4a6f-8022-dab62b7ec9df
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
