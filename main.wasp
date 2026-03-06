@@ -2,7 +2,7 @@ app flightClubMage {
   wasp: {
     version: "^0.21.0"
   },
-  title: "flightClubMage",
+  title: "Flight Club",
   head: [
     "<link rel='icon' href='/favicon.ico' />",
   ],
