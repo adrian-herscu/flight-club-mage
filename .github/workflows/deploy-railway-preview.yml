@@ -57,6 +57,7 @@ jobs:
         run: wasp deploy railway deploy flight-club-mage-preview --existing-project-id ${{ secrets.RAILWAY_PREVIEW_PROJECT_ID }}
         env:
           RAILWAY_API_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_API_TOKEN }}
 
       - name: Comment preview URL on PR
         if: github.event_name == 'pull_request'
